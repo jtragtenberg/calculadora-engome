@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Engome — Ficha de medição e cálculo</title>
+<style>
+  @page { size: A4; margin: 14mm 13mm; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1b1f24;
+    background: #fff;
+  }
+  h1 { font-size: 18px; margin: 0 0 2px; }
+  h2 { font-size: 14px; margin: 0 0 8px; }
+  .subtitle { font-size: 11px; color: #5b6470; margin: 0 0 10px; }
+  .page {
+    page-break-after: always;
+    min-height: 269mm;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #1b1f24;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+  }
+  .header-meta div { display: flex; flex-direction: column; gap: 3px; }
+  .fill-line {
+    display: inline-block;
+    min-width: 90px;
+    border-bottom: 1px solid #1b1f24;
+    height: 13px;
+  }
+
+  /* ---------- Page 1: measurement sheet ---------- */
+  .illustration-wrap {
+    position: relative;
+    width: 100%;
+    margin: 6px auto 10px;
+    text-align: center;
+  }
+  .illustration-wrap img { width: 100mm; display: block; margin: 0 auto; }
+  .illustration-wrap svg { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100mm; height: auto; }
+
+  .measure-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .measure-table th, .measure-table td {
+    border: 1px solid #b7bec7;
+    padding: 7px 8px;
+    text-align: left;
+  }
+  .measure-table th { background: #eef0f3; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .measure-table td.value-cell { width: 30mm; }
+  .measure-table td.unit-cell { width: 24mm; font-size: 11px; color: #5b6470; }
+
+  .notes-box {
+    margin-top: 14px;
+    border: 1px solid #b7bec7;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: #5b6470;
+  }
+  .notes-box .lines { margin-top: 6px; }
+  .notes-box .lines div { border-bottom: 1px solid #d5dae0; height: 16px; }
+
+  .two-col { display: flex; gap: 14mm; align-items: flex-start; }
+  .two-col .col { flex: 1; }
+
+  /* ---------- Page 2: calculation + checklist ---------- */
+  table.calc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.3px;
+    margin-bottom: 10px;
+  }
+  table.calc-table th, table.calc-table td {
+    border: 1px solid #b7bec7;
+    padding: 4px 6px;
+    text-align: left;
+  }
+  table.calc-table th { background: #eef0f3; font-size: 9.5px; text-transform: uppercase; }
+  table.calc-table td.result-cell { width: 24mm; }
+  table.calc-table tr.material-row td {
+    background: #f4f5f7;
+    font-weight: 700;
+    font-size: 10.5px;
+  }
+
+  .checklist-section h2 { margin-top: 4px; }
+  .check-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 10px;
+    font-size: 9.5px;
+  }
+  .check-group {
+    border: 1px solid #b7bec7;
+    border-radius: 3px;
+    padding: 5px 6px;
+    break-inside: avoid;
+  }
+  .check-group .g-title { font-weight: 700; font-size: 9.8px; margin-bottom: 3px; }
+  .check-items { display: flex; flex-wrap: wrap; gap: 3px; }
+  .check-item { display: inline-flex; align-items: center; gap: 2px; margin-right: 4px; }
+  .chk {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border: 1px solid #1b1f24;
+    margin-right: 2px;
+    flex-shrink: 0;
+  }
+  .progress-line { font-size: 10px; color: #5b6470; margin: 8px 0 6px; }
+
+  .note { font-size: 9.5px; color: #5b6470; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page">
+  <div class="header-row">
+    <div>
+      <h1>Engome — Ficha de medição do bojo</h1>
+      <p class="subtitle">Meça o bojo (casco de madeira) conforme ilustrado e preencha os valores abaixo.</p>
+    </div>
+    <div class="header-meta">
+      <div><span>Feito por:</span><span class="fill-line"></span></div>
+      <div><span>Data:</span><span class="fill-line"></span></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col" style="flex:1.3">
+      <div class="illustration-wrap">
+        <img src="assets/print/iso-referencia.png" alt="Ilustração do engome (baseada em Engome Desenho v3.pdf)" />
+        <svg viewBox="0 0 1191 1489" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="pa" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#5c9ec9"></path>
+            </marker>
+          </defs>
+          <g stroke="#5c9ec9" stroke-width="4" fill="none" marker-start="url(#pa)" marker-end="url(#pa)">
+            <line x1="255" y1="445" x2="1030" y2="330"></line>
+            <line x1="290" y1="795" x2="985" y2="705"></line>
+            <line x1="320" y1="1005" x2="975" y2="910"></line>
+            <line x1="536" y1="612" x2="558" y2="1128"></line>
+          </g>
+          <g font-family="-apple-system,Segoe UI,Arial,sans-serif" font-weight="700" fill="#171b21" stroke="#fff" stroke-width="6" paint-order="stroke" font-size="34">
+            <text x="640" y="345">Dc</text>
+            <text x="20" y="775">Dmf / Dmd</text>
+            <text x="1000" y="905">Db</text>
+            <text x="580" y="670">Ai</text>
+          </g>
+        </svg>
+      </div>
+      <p class="note" style="text-align:center">Ilustração baseada em "Engome Desenho v3.pdf". Dmf (fora) e Dmd (dentro) são medidos na mesma altura, na cintura onde as arquilhas interna/externa se encontram.</p>
+    </div>
+
+    <div class="col" style="flex:1">
+      <table class="measure-table">
+        <thead><tr><th>Medida</th><th>O que é</th><th>Valor</th><th>Unid.</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dc</strong></td><td>Diâmetro de cima</td><td class="value-cell"></td><td class="unit-cell">☐ mm ☐ cm</td></tr>
+          <tr><td><strong>Dmf</strong></td><td>Diâmetro do meio de fora</td><td class="value-cell"></td><td class="unit-cell">☐ mm ☐ cm</td></tr>
+          <tr><td><strong>Dmd</strong></td><td>Diâmetro do meio de dentro</td><td class="value-cell"></td><td class="unit-cell">☐ mm ☐ cm</td></tr>
+          <tr><td><strong>Db</strong></td><td>Diâmetro de baixo</td><td class="value-cell"></td><td class="unit-cell">☐ mm ☐ cm</td></tr>
+          <tr><td><strong>Ai</strong></td><td>Comprimento da lateral do bojo</td><td class="value-cell"></td><td class="unit-cell">☐ mm ☐ cm</td></tr>
+        </tbody>
+      </table>
+
+      <div class="illustration-wrap" style="margin-top:16px;">
+        <img src="assets/print/topo-referencia.png" style="width:62mm" alt="Vista de topo do aro (Engome Desenho v3.pdf)" />
+      </div>
+      <p class="note" style="text-align:center">Vista de topo — todos os diâmetros são medidos na horizontal, de face a face.</p>
+
+      <div class="notes-box">
+        Observações
+        <div class="lines"><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page">
+  <div class="header-row">
+    <div>
+      <h1>Engome — Cálculo das peças e checklist de fabricação</h1>
+      <p class="subtitle">Use as medidas da página anterior nas fórmulas abaixo (ou confira em calculadora-engome no site) e anote o comprimento de corte de cada peça.</p>
+    </div>
+  </div>
+
+  <div id="calc-table-wrap"></div>
+
+  <div class="checklist-section">
+    <h2>Checklist de fabricação</h2>
+    <p class="progress-line">Progresso: ______ / 42 peças concluídas</p>
+    <div id="check-groups-wrap" class="check-groups"></div>
+  </div>
+
+  <p class="note">Fórmulas e checklist gerados a partir da calculadora online — jtragtenberg.github.io/calculadora-engome</p>
+</section>
+
+<script type="module">
+import { MATERIALS, BOM } from "./bom.js";
+
+const calcWrap = document.getElementById("calc-table-wrap");
+let rows = "";
+Object.entries(MATERIALS).forEach(([matKey, matInfo]) => {
+  const items = BOM.filter((i) => i.material === matKey);
+  if (!items.length) return;
+  rows += `<tr class="material-row"><td colspan="5">${matInfo.label}</td></tr>`;
+  items.forEach((item) => {
+    rows += `<tr>
+      <td>${item.label}</td>
+      <td>${item.qty}</td>
+      <td>${item.formula}</td>
+      <td class="result-cell">____________</td>
+      <td class="result-cell">× ${item.qty} = ________</td>
+    </tr>`;
+  });
+});
+calcWrap.innerHTML = `
+  <table class="calc-table">
+    <thead><tr><th>Peça</th><th>Qtd.</th><th>Fórmula (mm)</th><th>Resultado unitário</th><th>Total da peça</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+
+const groupsWrap = document.getElementById("check-groups-wrap");
+let groupsHtml = "";
+BOM.forEach((item) => {
+  let items = "";
+  for (let i = 0; i < item.qty; i++) {
+    items += `<span class="check-item"><span class="chk"></span>${item.qty > 1 ? i + 1 : ""}</span>`;
+  }
+  groupsHtml += `<div class="check-group">
+    <div class="g-title">${item.label}${item.qty > 1 ? ` (${item.qty}x)` : ""}</div>
+    <div class="check-items">${items}</div>
+  </div>`;
+});
+groupsWrap.innerHTML = groupsHtml;
+</script>
+</body>
+</html>

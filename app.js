@@ -1,50 +1,8 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { MATERIALS, BOM, DIM_KEYS } from "./bom.js";
 
-/* =========================================================================
- * BOM (bill of materials) — shared by the calculator and the checklist.
- * Formulas come from engome.md. All lengths are computed in millimeters.
- * ========================================================================= */
-
-const MATERIALS = {
-  chata:      { label: "Barra chata 7/8” x 1/8” de ferro" },
-  varao12:    { label: "Varões de 1/2” liso" },
-  cantoneira: { label: "Cantoneira 7/8” x 1/8”" },
-  varao516:   { label: "Varões 5/16” liso" },
-  varao14:    { label: "Varões 1/4” liso" },
-  roscada:    { label: "Barra roscada (varão de rosca) 5/16”" },
-};
-
-// Each line: id, human label, material key, quantity, length(dims) -> mm, partKey (links to 3D model group / checklist)
-const BOM = [
-  { id: "arquilha_interna", label: "Arquilha interna de sustentação do bojo", material: "chata", qty: 1,
-    length: (d) => d.Dmd * Math.PI, partKey: "arquilha_interna" },
-  { id: "arquilha_externa", label: "Arquilha externa de sustentação do bojo", material: "chata", qty: 1,
-    length: (d) => d.Dmf * Math.PI, partKey: "arquilha_externa" },
-  { id: "aro_cima", label: "Aro de cima", material: "chata", qty: 1,
-    length: (d) => (d.Dc + 4) * Math.PI, partKey: "aro_cima" },
-  { id: "aro_baixo", label: "Aro de baixo", material: "chata", qty: 1,
-    length: (d) => (d.Db + 4) * Math.PI, partKey: "aro_baixo" },
-  { id: "suportes", label: "Suportes para o bojo no aro de baixo", material: "chata", qty: 3,
-    length: (d) => ((d.Db + 4) * Math.PI) / 12, partKey: "suporte" },
-  { id: "orelhas", label: "Orelhas furadas", material: "cantoneira", qty: 15,
-    length: () => 22.2, partKey: "orelha" },
-  { id: "arquilha_couro", label: "Arquilha do couro", material: "varao14", qty: 1,
-    length: (d) => (d.Dc + 8) * Math.PI, partKey: "arquilha_couro" },
-  { id: "base_circular", label: "Base circular", material: "varao12", qty: 1,
-    length: (d) => (d.Dc + 6) * Math.PI, partKey: "base_circular" },
-  { id: "pes_redonda", label: "Pés — trecho de varão redondo", material: "varao12", qty: 3,
-    length: () => 300, partKey: "pe" },
-  { id: "pes_roscada", label: "Pés — trecho de barra roscada", material: "roscada", qty: 3,
-    length: () => 20, partKey: "pe" },
-  { id: "esticadores_redonda", label: "Esticadores — trecho de varão redondo 5/16”", material: "varao516", qty: 6,
-    length: (d) => Math.max(d.Ai + 10 - 75, 0), partKey: "esticador" },
-  { id: "esticadores_roscada", label: "Esticadores — trecho de barra roscada 5/16”", material: "roscada", qty: 6,
-    length: () => 75, partKey: "esticador" },
-];
-
-const DIM_KEYS = ["Dc", "Dmf", "Dmd", "Db", "Ai"];
 const DIMS_STORAGE_KEY = "engome-dims-v1";
 const CHECKLIST_STORAGE_KEY = "engome-checklist-v1";
 
