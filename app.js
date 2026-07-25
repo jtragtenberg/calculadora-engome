@@ -44,7 +44,7 @@ const BOM = [
     length: () => 75, partKey: "esticador" },
 ];
 
-const DIM_KEYS = ["Dc", "Dmf", "Dmd", "Db", "A", "Ai"];
+const DIM_KEYS = ["Dc", "Dmf", "Dmd", "Db", "Ai"];
 const DIMS_STORAGE_KEY = "engome-dims-v1";
 const CHECKLIST_STORAGE_KEY = "engome-checklist-v1";
 

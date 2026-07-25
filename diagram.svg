@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 740" font-family="-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="90 0 550 775" font-family="-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#5c9ec9"></path>
@@ -20,7 +20,7 @@
     .note, .shape-label { stroke: none; }
   </style>
 
-  <rect x="0" y="0" width="640" height="740" fill="#171b21"></rect>
+  <rect x="0" y="0" width="640" height="775" fill="#171b21"></rect>
 
   <!-- Bottom cap ellipse -->
   <ellipse class="cap" cx="300" cy="620" rx="140" ry="15"></ellipse>
@@ -55,13 +55,6 @@
   <text class="dim-label" x="300" y="705" text-anchor="middle">Db</text>
   <text class="dim-sub" x="300" y="722" text-anchor="middle">diâmetro de baixo</text>
 
-  <!-- ===== A dimension (left, full height) ===== -->
-  <line class="ext-line" x1="130" y1="100" x2="60" y2="100"></line>
-  <line class="ext-line" x1="160" y1="620" x2="60" y2="620"></line>
-  <line class="dim-line" x1="60" y1="100" x2="60" y2="620"></line>
-  <text class="dim-label" x="34" y="366" text-anchor="middle" transform="rotate(-90 34 366)">A</text>
-  <text class="dim-sub" x="14" y="366" text-anchor="middle" transform="rotate(-90 14 366)">altura do bojo</text>
-
   <!-- ===== Ai dimension (right, diagonal, follows the slanted surface) ===== -->
   <line class="ext-line" x1="470" y1="100" x2="532" y2="100"></line>
   <line class="ext-line" x1="440" y1="620" x2="502" y2="620"></line>
@@ -81,5 +74,8 @@
   <text class="dim-label" x="560" y="424" text-anchor="start">Dmd</text>
   <text class="dim-sub" x="560" y="440" text-anchor="start">meio de dentro</text>
 
-  <text class="note" x="320" y="735" text-anchor="middle">Diagrama esquemático (fora de escala) — todos os diâmetros são medidos na horizontal, de face a face.</text>
+  <text class="note" x="365" y="750" text-anchor="middle">
+    <tspan x="365" dy="0">Diagrama esquemático (fora de escala) — todos os diâmetros</tspan>
+    <tspan x="365" dy="16">são medidos na horizontal, de face a face.</tspan>
+  </text>
 </svg>

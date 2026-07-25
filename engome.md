@@ -5,7 +5,6 @@ Dc - Diâmetro de cima
 Dmf - Diâmetro do meio de fora 
 Dmd - Diâmetro do meio de dentro
 Db - Diâmetro de baixo
-A - Altura do bojo
 Ai - Comprimento da lateral do bojo
 
 ## Partes do Engome
