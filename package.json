@@ -1,0 +1,12 @@
+{
+  "name": "calculadora-de-engome",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "convert-step": "node tools/convert-step.mjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "occt-import-js": "^0.0.23"
+  }
+}
